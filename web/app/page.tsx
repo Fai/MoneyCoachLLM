@@ -126,13 +126,46 @@ const Home: React.FC<HomeProps> = () => {
         <div className={styles.clusterInformation}>
           <h2 style={{ color: cluster === 'Black' || cluster === 'Red' ? 'red' : cluster === 'Orange' ? 'orange' : 'green' }}>สถานะการเงินของคุณคือ: <span>{cluster}</span></h2>
           {cluster === 'Black' && (
+            <>
             <p style={{ color: 'red' }}>คุณเข้าขั้นวิกฤติ</p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <FinancialChart
+            totalDebt={totalDebt}
+            income={income}
+            saving={saving}
+            fixedExpense={fixedExpense}
+            variableExpense={variableExpense}
+            />
+          </div>
+          </>
           )}
           {cluster === 'Red' && (
+            <>
             <p style={{ color: 'red' }}>คุณกำลังเข้าใกล้สถานะวิกฤติ</p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <FinancialChart
+            totalDebt={totalDebt}
+            income={income}
+            saving={saving}
+            fixedExpense={fixedExpense}
+            variableExpense={variableExpense}
+            />
+          </div>
+          </>
           )}
           {cluster === 'Orange' && (
+            <>
             <p style={{ color: 'orange' }}>คุณมีความเสี่ยงทางการเงิน</p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <FinancialChart
+            totalDebt={totalDebt}
+            income={income}
+            saving={saving}
+            fixedExpense={fixedExpense}
+            variableExpense={variableExpense}
+            />
+          </div>
+          </>
           )}
           {cluster === 'Green' && (
             <>
