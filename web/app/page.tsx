@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styles from './Home.module.css';
 import { useRouter } from 'next/navigation'
+import FinancialChart from './FinancialChart';
 
 interface HomeProps {}
 
@@ -134,7 +135,19 @@ const Home: React.FC<HomeProps> = () => {
             <p style={{ color: 'orange' }}>คุณมีความเสี่ยงทางการเงิน</p>
           )}
           {cluster === 'Green' && (
-            <p style={{ color: 'green' }}>สถานะการเงินของคุณดีมาก</p>
+            <>
+            <p style={{ color: 'green', textAlign: 'center' }}>สถานะการเงินของคุณดีมาก</p>
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <FinancialChart
+              totalDebt={totalDebt}
+              income={income}
+              saving={saving}
+              fixedExpense={fixedExpense}
+              variableExpense={variableExpense}
+              />
+            </div>
+            </>
           )}
         </div>
       )}
