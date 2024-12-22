@@ -7,6 +7,7 @@ interface Message {
 }
 
 export const useCustomChat = () => {
+  const masterUrl = process.env.MASTER_URL;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
 
@@ -22,7 +23,7 @@ export const useCustomChat = () => {
     setMessages([...messages, userMessage]);
 
     try {
-      const response = await fetch('/api/custom_chat', {
+      const response = await fetch(`${masterUrl}/api/custom_chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
