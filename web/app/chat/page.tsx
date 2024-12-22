@@ -24,8 +24,7 @@ export default function Chat() {
         }
       });
       const data = await response.json();
-      const advice = JSON.parse(data.advice);
-      setStartMessage(advice.advisoryMessage);
+      setStartMessage(data.advice);
     }
     getStartMessage();
   }, []);
