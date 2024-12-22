@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import styles from './Home.module.css';
 import { useRouter } from 'next/navigation'
 import FinancialChart from './FinancialChart';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 interface HomeProps {}
 
@@ -70,6 +73,7 @@ const Home: React.FC<HomeProps> = () => {
 
   const handleSubmit = async () => {
     const masterUrl = process.env.MASTER_URL;
+    console.log('masterUrl:' , masterUrl);
     const data = {
       income,
       fixed_expense: fixedExpense,
@@ -93,7 +97,7 @@ const Home: React.FC<HomeProps> = () => {
         console.log('Data submitted successfully');
         router.push('/chat');
       } else {
-        console.error('Failed to submit data');
+        console.error('Failed to submit data', response);
       }
     } catch (error) {
       console.error('Error:', error);

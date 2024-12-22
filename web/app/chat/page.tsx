@@ -12,7 +12,7 @@ export default function Chat() {
   //   });
   const { messages, input, handleSubmit, handleInputChange } = useCustomChat();
   const [ startMessage, setStartMessage ] = React.useState('');
-  const masterUrl = process.env.MASTER_URL;
+  const masterUrl = 'http://3.1.200.9:8000';
 
   useEffect(() => {
     

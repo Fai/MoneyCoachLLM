@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 interface Message {
   id: string;
