@@ -105,7 +105,7 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <>
       <div className={styles.header}>
-        <h1>Money Coach</h1>
+        <h1>Money Clinic</h1>
       </div>
       {(cluster === '') && (
         <div className={styles.formGroup} id="userInformation">

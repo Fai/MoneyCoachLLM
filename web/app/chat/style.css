@@ -1,3 +1,11 @@
+.header h1 {
+  font-size: xx-large;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  margin-top: 50px;
+}
+
 .message {
     display: flex;
     flex-direction: column;
@@ -6,11 +14,16 @@
   
   .userMessage {
     align-self: flex-end;
-    background-color: #e1ffc7;
+    background-color: #65aefc;
+    color: white;
     padding: 10px;
     border-radius: 10px;
     max-width: 70%;
     word-wrap: break-word;
+  }
+
+  .userMessage .message-content {
+    color: white;
   }
   
   .aiMessage {
