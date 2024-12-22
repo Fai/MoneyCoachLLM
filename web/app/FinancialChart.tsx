@@ -134,8 +134,8 @@ const FinancialChart: React.FC<FinancialChartProps> = ({
       <h3>Outcome Portion</h3>
       <canvas ref={donutCanvasRef} width={300} height={300}></canvas>
 
-      <h3>Income vs Outcome</h3>
-      <canvas ref={stackedBarCanvasRef} width={500} height={150}></canvas>
+      {/* <h3>Income vs Outcome</h3>
+      <canvas ref={stackedBarCanvasRef} width={500} height={150}></canvas> */}
 
       <h3>Debt vs Saving</h3>
       <canvas ref={debtSavingCanvasRef} width={600} height={250}></canvas>
