@@ -23,7 +23,7 @@ export const useCustomChat = () => {
     setMessages([...messages, userMessage]);
 
     try {
-      const response = await fetch(`${masterUrl}/api/custom_chat`, {
+      const response = await fetch(`${masterUrl}/api/chats`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
