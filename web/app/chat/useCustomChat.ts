@@ -32,7 +32,7 @@ export const useCustomChat = () => {
       });
 
       const data = await response.json();
-      const aiMessage: Message = { id: Date.now().toString(), role: 'ai', content: data.reply };
+      const aiMessage: Message = { id: Date.now().toString(), role: 'ai', content: data.chatbot_response };
 
       setMessages([...messages, userMessage, aiMessage]);
       setInput('');
