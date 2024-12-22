@@ -1,7 +1,6 @@
-.env
+.env*
 .env.local
-.env.development
-.env.test
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

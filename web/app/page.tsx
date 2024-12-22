@@ -69,8 +69,6 @@ const Home: React.FC<HomeProps> = () => {
   };
 
   const handleSubmit = async () => {
-    router.push('/chat');
-
     const masterUrl = process.env.MASTER_URL;
     const data = {
       income,
