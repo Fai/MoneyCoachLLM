@@ -1,0 +1,23 @@
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .userMessage {
+    align-self: flex-end;
+    background-color: #e1ffc7;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+  
+  .aiMessage {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
