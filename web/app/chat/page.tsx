@@ -24,7 +24,8 @@ export default function Chat() {
         }
       });
       const data = await response.json();
-      setStartMessage(data.message);
+      const advice = JSON.parse(data.advice);
+      setStartMessage(advice.advisoryMessage);
     }
     getStartMessage();
   }, []);
@@ -37,7 +38,7 @@ export default function Chat() {
       <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch chat">
       <div className='message aiMessage'>
           <div className='message-role font-bold'>พี่หมอ</div>
-          <div className='message-content text-gray-600'>สวัสดีค่ะ</div>
+          <div className='message-content text-gray-600'>สวัสดีค่ะ กรุณารอประมวลผลสักครู่นะคะ</div>
         </div>
         { startMessage !== '' && (<div className='message aiMessage'>
           <div className='message-role font-bold'>พี่หมอ</div>

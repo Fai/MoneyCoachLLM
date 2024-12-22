@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 interface Message {
   id: string;
@@ -10,7 +7,7 @@ interface Message {
 }
 
 export const useCustomChat = () => {
-  const masterUrl = process.env.MASTER_URL;
+  const masterUrl = 'http://3.1.200.9:8000';
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
 

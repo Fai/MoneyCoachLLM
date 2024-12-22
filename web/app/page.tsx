@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import styles from './Home.module.css';
 import { useRouter } from 'next/navigation'
 import FinancialChart from './FinancialChart';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 interface HomeProps {}
 
@@ -28,6 +25,8 @@ const Home: React.FC<HomeProps> = () => {
   const [income, setIncome] = useState<number>(0);
   const [fixedExpense, setFixedExpense] = useState<number>(0);
   const [variableExpense, setVariableExpense] = useState<number>(0);
+  const masterUrl = 'http://3.1.200.9:8000';
+  console.log('masterUrl:' , masterUrl);
 
   const handleAddDebt = () => {
     setDebts([...debts, {
@@ -72,17 +71,17 @@ const Home: React.FC<HomeProps> = () => {
   };
 
   const handleSubmit = async () => {
-    const masterUrl = process.env.MASTER_URL;
-    console.log('masterUrl:' , masterUrl);
     const data = {
-      income,
-      fixed_expense: fixedExpense,
-      variable_expense: variableExpense,
-      total_debt: totalDebt,
-      saving,
+      income: income.toString(),
+      fixed_expense: fixedExpense.toString(),
+      variable_expense: variableExpense.toString(),
+      total_debt: totalDebt.toString(),
+      saving: saving.toString(),
       cluster: cluster,
       debts,
     };
+
+    console.log(JSON.stringify(data));
 
     try {
       const response = await fetch(`${masterUrl}/api/financial_data`, {
