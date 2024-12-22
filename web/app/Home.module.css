@@ -1,0 +1,54 @@
+.header h1 {
+    font-size: xx-large;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+    padding: 60px;
+  }
+  
+  .formControl {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .addButton {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .removeButton {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
