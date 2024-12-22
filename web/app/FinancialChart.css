@@ -1,0 +1,12 @@
+.financial-chart-container {
+    margin-top: 40px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  canvas {
+    width: auto;
+    height: auto;
+  }

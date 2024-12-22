@@ -1,15 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useCustomChat } from './useCustomChat';
-import { useChat } from 'ai/react';
 import './style.css';
 
 export default function Chat() {
-  // const { messages, input, handleSubmit, handleInputChange, isLoading } =
-  //   useChat({
-  //     // api: '/api/chat?protocol=text',
-  //     streamProtocol: 'text',
-  //   });
   const { messages, input, handleSubmit, handleInputChange } = useCustomChat();
   const [ startMessage, setStartMessage ] = React.useState('');
   const masterUrl = 'http://3.1.200.9:8000';

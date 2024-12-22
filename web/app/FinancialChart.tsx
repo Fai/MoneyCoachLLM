@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './FinancialChart.css'; // Import the CSS file
 
 interface FinancialChartProps {
   totalDebt: number;
@@ -33,45 +34,45 @@ const FinancialChart: React.FC<FinancialChartProps> = ({
     if (donutCanvas) {
       const ctx = donutCanvas.getContext('2d');
       if (ctx) {
-      const total = data.reduce((sum, value) => sum + value, 0);
-      let startAngle = 0;
+        const total = data.reduce((sum, value) => sum + value, 0);
+        let startAngle = 0;
 
-      ctx.clearRect(0, 0, donutCanvas.width, donutCanvas.height);
-      const centerX = donutCanvas.width / 2;
-      const centerY = donutCanvas.height / 2;
-      const radius = 100;
+        ctx.clearRect(0, 0, donutCanvas.width, donutCanvas.height);
+        const centerX = donutCanvas.width / 2;
+        const centerY = donutCanvas.height / 2;
+        const radius = Math.min(donutCanvas.width, donutCanvas.height) / 2 - 20;
 
-      data.forEach((value, index) => {
-        const sliceAngle = (value / total) * 2 * Math.PI;
+        data.forEach((value, index) => {
+          const sliceAngle = (value / total) * 2 * Math.PI;
 
-        // Draw slice
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
-        ctx.closePath();
-        ctx.fillStyle = colors[index];
-        ctx.fill();
+          // Draw slice
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+          ctx.closePath();
+          ctx.fillStyle = colors[index];
+          ctx.fill();
 
-        // Add percentage labels
-        const midAngle = startAngle + sliceAngle / 2;
-        const textX = centerX + (radius / 1.5) * Math.cos(midAngle);
-        const textY = centerY + (radius / 1.5) * Math.sin(midAngle);
-        ctx.fillStyle = '#000';
-        ctx.font = '12px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(`${Math.round((value / total) * 100)}%`, textX, textY);
+          // Add percentage labels
+          const midAngle = startAngle + sliceAngle / 2;
+          const textX = centerX + (radius / 1.5) * Math.cos(midAngle);
+          const textY = centerY + (radius / 1.5) * Math.sin(midAngle);
+          ctx.fillStyle = '#000';
+          ctx.font = '12px Arial';
+          ctx.textAlign = 'center';
+          ctx.fillText(`${Math.round((value / total) * 100)}%`, textX, textY);
 
-        startAngle += sliceAngle;
-      });
+          startAngle += sliceAngle;
+        });
 
-      // Add legend
-      labels.forEach((label, index) => {
-        ctx.fillStyle = colors[index];
-        ctx.fillRect(220, 20 + index * 20, 10, 10);
-        ctx.fillStyle = '#000';
-        ctx.font = '12px Arial';
-        ctx.fillText(label, 240, 30 + index * 20);
-      });
+        // Add legend
+        labels.forEach((label, index) => {
+          ctx.fillStyle = colors[index];
+          ctx.fillRect(20, 20 + index * 20, 10, 10);
+          ctx.fillStyle = '#000';
+          ctx.font = '12px Arial';
+          ctx.fillText(label, 40, 30 + index * 20);
+        });
       }
     }
 
@@ -109,49 +110,49 @@ const FinancialChart: React.FC<FinancialChartProps> = ({
     if (debtSavingCanvas) {
       const ctx = debtSavingCanvas.getContext('2d');
       if (ctx) {
-      ctx.clearRect(0, 0, debtSavingCanvas.width, debtSavingCanvas.height);
+        ctx.clearRect(0, 0, debtSavingCanvas.width, debtSavingCanvas.height);
 
-      const periods = 12;
-      const savingGrowth = Array.from({ length: periods }, (_, i) => saving * (i + 1));
-      const debtGrowth = Array.from({ length: periods }, (_, i) => totalDebt - totalDebt * (i / periods));
+        const periods = 12;
+        const savingGrowth = Array.from({ length: periods }, (_, i) => saving * (i + 1));
+        const debtGrowth = Array.from({ length: periods }, (_, i) => totalDebt - totalDebt * (i / periods));
 
-      const barWidth = 20;
-      const gap = 15;
+        const barWidth = 20;
+        const gap = 15;
 
-      savingGrowth.forEach((save, index) => {
-        const x = index * (barWidth * 2 + gap) + 40;
+        savingGrowth.forEach((save, index) => {
+          const x = index * (barWidth * 2 + gap) + 40;
 
-        // Draw Debt Bar
+          // Draw Debt Bar
+          ctx.fillStyle = '#F44336';
+          ctx.fillRect(x, 200 - (debtGrowth[index] / maxData) * 150, barWidth, (debtGrowth[index] / maxData) * 150);
+
+          // Draw Saving Bar
+          ctx.fillStyle = '#4CAF50';
+          ctx.fillRect(x + barWidth + gap, 200 - (save / maxData) * 150, barWidth, (save / maxData) * 150);
+
+          // Add labels
+          ctx.fillStyle = '#000';
+          ctx.font = '10px Arial';
+          ctx.fillText(`P${index + 1}`, x + barWidth / 2, 220);
+        });
+
+        // Add legend
         ctx.fillStyle = '#F44336';
-        ctx.fillRect(x, 200 - (debtGrowth[index] / maxData) * 150, barWidth, (debtGrowth[index] / maxData) * 150);
-
-        // Draw Saving Bar
-        ctx.fillStyle = '#4CAF50';
-        ctx.fillRect(x + barWidth + gap, 200 - (save / maxData) * 150, barWidth, (save / maxData) * 150);
-
-        // Add labels
+        ctx.fillRect(500, 20, 10, 10);
         ctx.fillStyle = '#000';
-        ctx.font = '10px Arial';
-        ctx.fillText(`P${index + 1}`, x + barWidth / 2, 220);
-      });
+        ctx.font = '12px Arial';
+        ctx.fillText('หนี้', 520, 30);
 
-      // Add legend
-      ctx.fillStyle = '#F44336';
-      ctx.fillRect(500, 20, 10, 10);
-      ctx.fillStyle = '#000';
-      ctx.font = '12px Arial';
-      ctx.fillText('หนี้', 520, 30);
-
-      ctx.fillStyle = '#4CAF50';
-      ctx.fillRect(500, 40, 10, 10);
-      ctx.fillStyle = '#000';
-      ctx.fillText('เงินเก็บ', 520, 50);
+        ctx.fillStyle = '#4CAF50';
+        ctx.fillRect(500, 40, 10, 10);
+        ctx.fillStyle = '#000';
+        ctx.fillText('เงินเก็บ', 520, 50);
       }
     }
-    }, [totalDebt, income, saving, fixedExpense, variableExpense]);
+  }, [totalDebt, income, saving, fixedExpense, variableExpense]);
 
   return (
-    <div>
+    <div className="financial-chart-container">
       <h3>Outcome Portion</h3>
       <canvas ref={donutCanvasRef} width={300} height={300}></canvas>
 

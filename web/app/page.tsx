@@ -111,7 +111,14 @@ const Home: React.FC<HomeProps> = () => {
       {(cluster === '') && (
         <div className={styles.formGroup} id="userInformation">
         <label htmlFor="totalDebt"> หนี้สินต่อเดือน:</label>
-        <input type="number" className={styles.formControl} id="totalDebt" value={totalDebt}  onChange={(e) => setTotalDebt(Number(e.target.value))}  />
+        <input 
+          type="number" 
+          className={styles.formControl} 
+          id="totalDebt" 
+          value={totalDebt}
+          onChange={(e) => 
+          setTotalDebt(Number(e.target.value))}  
+        />
         <label htmlFor="income">รายได้:</label>
         <input type="number" className={styles.formControl} id="income" value={income}  onChange={(e) => setIncome(Number(e.target.value))}  />
         <label htmlFor="saving">เงินออม:</label>
