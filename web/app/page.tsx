@@ -81,7 +81,7 @@ const Home: React.FC<HomeProps> = () => {
     };
 
     try {
-      const response = await fetch(`${masterUrl}/api/submit_financial_data`, {
+      const response = await fetch(`${masterUrl}/api/financial_data`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
