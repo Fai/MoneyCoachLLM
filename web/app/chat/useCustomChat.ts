@@ -28,7 +28,7 @@ export const useCustomChat = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ user_input: input }),
       });
 
       const data = await response.json();
