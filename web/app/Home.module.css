@@ -6,6 +6,19 @@
     margin-top: 50px;
 }
 
+.clusterInformation h2 {
+    font-size: x-large;
+    font-weight: bold;;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.clusterInformation p {
+    font-size: large;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .formGroup {
     margin-bottom: 20px;
     padding: 60px;

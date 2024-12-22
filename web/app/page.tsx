@@ -52,20 +52,18 @@ const Home: React.FC<HomeProps> = () => {
     const netIncome = income - saving - fixedExpense - variableExpense;
     console.log('netIncome:', netIncome);
     if (netIncome <= 0) {
-      console.log('คุณกำลังเข้าใกล้สถานะวิกฤติ');
-      alert('คุณกำลังเข้าใกล้สถานะวิกฤติ');
+      setCluster('Black');
     }
     const debtToIncomeRatio = totalDebt / netIncome;
-    console.log('debtRatio:', debtToIncomeRatio);
+    console.log('debtToIncomeRatio:', debtToIncomeRatio);
     if (debtToIncomeRatio > 0.5) {
       setCluster('Red')
     }
-    if (debtToIncomeRatio > 0.36) {
+    else if (debtToIncomeRatio > 0.36) {
       setCluster('Orange')
     }
-    if (debtToIncomeRatio <= 0.36) {
+    else if (debtToIncomeRatio <= 0.36) {
       setCluster('Green')
-      alert('สถานะการเงินของคุณดีมาก');
     }
   };
 
@@ -79,7 +77,7 @@ const Home: React.FC<HomeProps> = () => {
       variable_expense: variableExpense,
       total_debt: totalDebt,
       saving,
-      type: cluster,
+      cluster: cluster,
       debts,
     };
 
@@ -123,6 +121,24 @@ const Home: React.FC<HomeProps> = () => {
         <button type="button" className={styles.submitButton} onClick={() => handleCluster(totalDebt, income, saving, fixedExpense, variableExpense)}>Submit</button>
       </div>
       )}
+      {(cluster !== '') && (
+        <div className={styles.clusterInformation}>
+          <h2 style={{ color: cluster === 'Black' || cluster === 'Red' ? 'red' : cluster === 'Orange' ? 'orange' : 'green' }}>สถานะการเงินของคุณคือ: <span>{cluster}</span></h2>
+          {cluster === 'Black' && (
+            <p style={{ color: 'red' }}>คุณเข้าขั้นวิกฤติ</p>
+          )}
+          {cluster === 'Red' && (
+            <p style={{ color: 'red' }}>คุณกำลังเข้าใกล้สถานะวิกฤติ</p>
+          )}
+          {cluster === 'Orange' && (
+            <p style={{ color: 'orange' }}>คุณมีความเสี่ยงทางการเงิน</p>
+          )}
+          {cluster === 'Green' && (
+            <p style={{ color: 'green' }}>สถานะการเงินของคุณดีมาก</p>
+          )}
+        </div>
+      )}
+
       {(cluster === 'Orange' || cluster === 'Red') && (
         <div className={styles.formGroup} id="debtInformation">
         <div>
